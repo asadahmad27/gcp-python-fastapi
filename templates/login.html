@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="{{url_for('static',path='/styles.css')}}" rel="stylesheet" />
+    <script src="{{url_for('static',path='/firebase-login.js')}}" type="module"></script>
+</head>
+
+<body>
+    <div class="auth_container">
+        <div>
+            <Label>Email</Label>
+
+            <input name="email" type="email" id="email" />
+        </div>
+        <div>
+            <Label>Password</Label>
+            <input name="password" type="password" id="password" />
+        </div>
+
+
+        <div>
+            <button id="login">Login</button>
+            <button id="signup">Signup</button>
+        </div>
+        <hr />
+        <button id="signout">Signout</button>
+
+    </div>
+    hello {{name}}
+</body>
+
+</html>

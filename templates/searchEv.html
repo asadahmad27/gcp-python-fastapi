@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search EV</title>
+    <link href="{{url_for('static',path='/styles.css')}}" rel="stylesheet" />
+    <script src="{{url_for('static',path='/firebase-login.js')}}" type="module"></script>
+    <style>
+        .main {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        select,
+        input {
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <h2>Search for EVs</h2>
+        <form action="/search-evs" method="get">
+            <select id="attribute" name="attribute" onchange="updateForm()">
+                <option value="name">Name</option>
+                <option value="year">Year</option>
+                <option value="battery_size">Battery Size</option>
+                <!-- Add other attributes as options -->
+            </select>
+            <input type="text" id="value" name="value" placeholder="Enter value">
+            <div id="rangeInputs" style="display: none;">
+                <input type="number" id="min" name="min" placeholder="Min value">
+                <input type="number" id="max" name="max" placeholder="Max value">
+            </div>
+            <input type="submit" value="Search">
+        </form>
+    </div>
+
+
+    <script>
+        function updateForm() {
+            var attribute = document.getElementById("attribute").value;
+            var valueInput = document.getElementById("value");
+            var rangeInputs = document.getElementById("rangeInputs");
+            if (attribute === "name") {
+                valueInput.style.display = "inline";
+                rangeInputs.style.display = "none";
+            } else {
+                valueInput.style.display = "none";
+                rangeInputs.style.display = "flex";
+            }
+        }
+    </script>
+</body>
+
+</html>

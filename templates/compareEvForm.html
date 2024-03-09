@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare EVs</title>
+    <link href="{{url_for('static',path='/styles.css')}}" rel="stylesheet" />
+    <script src="{{url_for('static',path='/firebase-login.js')}}" type="module"></script>
+    <style>
+        .form-container {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        label {
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select,
+        input[type="submit"] {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <h2>Compare EVs</h2>
+        <form action="/compare-evs" method="get">
+            <label>Select First EV ID:</label>
+            <select name="ev1" id="ev1" required onchange="updateSecondDropdown()">
+                {% for ev in evs %}
+                <option value="{{ ev.id }}">{{ ev.name }}</option>
+                {% endfor %}
+            </select>
+
+            <label>Select Second EV:</label>
+            <select name="ev1" id="ev1" required onchange="updateSecondDropdown()">
+                {% for ev in evs %}
+                <option value="{{ ev.id }}">{{ ev.name }}</option>
+                {% endfor %}
+            </select>
+
+            <input type="submit" value="Compare">
+        </form>
+    </div>
+
+    <!-- <script>
+        function updateOptions(changedSelectId, selectedValue) {
+            const select1 = document.getElementById('ev1');
+            const select2 = document.getElementById('ev2');
+            const otherSelect = changedSelectId === 'ev1' ? select2 : select1;
+        
+            for (let option of otherSelect.options) {
+                if (option.value === selectedValue) {
+                    option.disabled = true;
+                   
+                } else {
+                    option.disabled = false;
+                }
+            }
+        }
+        </script> -->
+</body>
+
+</html>

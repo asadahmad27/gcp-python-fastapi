@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EV Info</title>
+    <link href="{{url_for('static',path='/styles.css')}}" rel="stylesheet" />
+    <script src="{{url_for('static',path='/firebase-login.js')}}" type="module"></script>
+    <style>
+        .container {
+            max-width: 80%;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        h1,
+        p {
+            margin: 10px 0;
+        }
+
+        .delete {
+            color: #dc3545;
+            cursor: pointer
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>EV Information</h1>
+        <h3><strong>Name:</strong> {{ ev.name }}</h3>
+        <h3><strong>Manufacturer:</strong> {{ ev.manufacturer }}</h3>
+        <h3><strong>Year:</strong> {{ ev.year }}</h3>
+        <h3><strong>Battery Size:</strong> {{ ev.battery_size }} kWh</h3>
+        <h3><strong>WLTP Range:</strong> {{ ev.wltp_range }} km</h3>
+        <h3><strong>Cost:</strong> {{ ev.cost }}</h3>
+        <h3><strong>Power:</strong> {{ ev.power }} kW</h3>
+    </div>
+    <button class="delete-button">Delete</button>
+</body>
+
+</html>

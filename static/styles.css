@@ -1,14 +1,47 @@
 body{
-    background:rgb(180, 180, 180)
+    background: rgb(207, 217, 221);
+    padding: 100px 0
 }
-.auth_container{
-    max-width:500px;
-    margin:auto auto;
-    height:70vh;
-    border:1px solid black;
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    gap:10px
+
+.auth_container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.auth_container div {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.login-button,.signup-button {
+    width: 95%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+
+#signout {
+    color: #dc3545;
+    cursor:pointer
+
 
 }

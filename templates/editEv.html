@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add EV</title>
+    <title>Edit EV</title>
     <link href="{{url_for('static',path='/styles.css')}}" rel="stylesheet" />
     <script src="{{url_for('static',path='/firebase-login.js')}}" type="module"></script>
     <style>
@@ -43,7 +43,7 @@
 
 <body>
     <div class="form-container">
-        <h2>Add New EV</h2>
+        <h2>Edit EV</h2>
         <form action="/add-ev" method="post">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
@@ -66,7 +66,7 @@
             <label for="power">Power (Kw):</label>
             <input type="number" id="power" name="power" required>
 
-            <input type="submit" value="Add EV">
+            <input type="submit" value="Update">
         </form>
     </div>
 

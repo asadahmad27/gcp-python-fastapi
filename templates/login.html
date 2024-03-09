@@ -7,6 +7,49 @@
     <title>Login</title>
     <link href="{{url_for('static',path='/styles.css')}}" rel="stylesheet" />
     <script src="{{url_for('static',path='/firebase-login.js')}}" type="module"></script>
+    <style>
+        .auth_container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .auth_container div {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .login-button,
+        .signup-button {
+            width: 95%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+
+        #signout {
+            color: #dc3545;
+            cursor: pointer
+        }
+    </style>
 </head>
 
 <body>
@@ -23,14 +66,13 @@
 
 
         <div>
-            <button id="login">Login</button>
-            <button id="signup">Signup</button>
+            <button id="login" style="margin-bottom: 20px;" class="login-button">Login</button>
+            <button id="signup" class="signup-button">Signup</button>
         </div>
         <hr />
         <button id="signout">Signout</button>
 
     </div>
-    hello {{name}}
 </body>
 
 </html>

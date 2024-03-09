@@ -5,65 +5,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <link href="{{url_for('static',path='/styles.css')}}" rel="stylesheet" />
+    <script src="{{url_for('static',path='/firebase-login.js')}}" type="module"></script>
+    <style>
+        .table-container {
+            max-width: 80%;
+            margin: auto;
+            background-color: white;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        button {
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
-    <pre>{{ evs_query }}</pre>
-    <p>heloo</p>
-    {% for doc in evs_query %}
-    {{ loop.index0 }}: {{ doc.id }} - {{ doc.get('name') }}
-    {% endfor %}
-
-    {% for doc in evs %}
-    {{doc}}
-
-    {% endfor %}
-
-
-    {% if user_token %}
-    {{user_token}}
-    {{error_info}}
-    {{user_info.get('name')}}
-    {% endif%}
-
-
-    {% if not user_token %}
-    <p>error</p>
-    {% endif%}
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Manufacturer</th>
-                <th>Year</th>
-                <th>Battery Size</th>
-                <th>WLTP Range</th>
-                <th>Cost</th>
-                <th>Power</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for doc in evs %}
-            <tr>
-                <td>{{ doc.id }}</td>
-                <td>{{ doc.get('name') }}</td>
-                <td>{{ doc.get('manufacturer') }}</td>
-                <td>{{ doc.get('year') }}</td>
-                <td>{{ doc.get('battery_size') }}</td>
-                <td>{{ doc.get('wltp_range') }}</td>
-                <td>{{ doc.get('cost') }}</td>
-                <td>{{ doc.get('power') }}</td>
-                <td>
-                    <button onclick="location.href='/view/{{ doc.id }}'">View</button>
-                    <button onclick="location.href='/edit/{{ doc.id }}'">Edit</button>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Manufacturer</th>
+                    <th>Year</th>
+                    <th>Battery Size</th>
+                    <th>WLTP Range</th>
+                    <th>Cost</th>
+                    <th>Power</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for doc in evs %}
+                <tr>
+                    <td>{{ doc.id }}</td>
+                    <td><a href="ev-info/{{2}}">{{ doc.get('name') }}</a></td>
+                    <td>{{ doc.get('manufacturer') }}</td>
+                    <td>{{ doc.get('year') }}</td>
+                    <td>{{ doc.get('battery_size') }}</td>
+                    <td>{{ doc.get('wltp_range') }}</td>
+                    <td>{{ doc.get('cost') }}</td>
+                    <td>{{ doc.get('power') }}</td>
+                    <td>
+                        <button onclick="location.href='/view/{{ doc.id }}'">View</button>
+                        <button onclick="location.href='/edit-ev/{{ 2 }}'">Edit</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </body>
 
 </html>

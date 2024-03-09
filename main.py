@@ -68,14 +68,27 @@ async def root(request:Request):
 
 @app.get("/add-ev",response_class=HTMLResponse)
 async def root(request:Request):
-    id_token=request.cookies.get("token")
-    error_message="no error"
-    user_token=validateFirebaseToken(id_token)
-    user=None
-    if not user_token:
-        return templates.TemplateResponse('home.html',{'request':request,'name':'','user_token':None,'error_info':"User not found"})
-    user=getUser(user_token)
-    return templates.TemplateResponse('addEv.html',{'request':request,'name':'asad','user_token':user_token,'user_info':user.get()})
+    # id_token=request.cookies.get("token")
+    # error_message="no error"
+    # user_token=validateFirebaseToken(id_token)
+    # user=None
+    # if not user_token:
+    #     return templates.TemplateResponse('home.html',{'request':request,'name':'','user_token':None,'error_info':"User not found"})
+    # user=getUser(user_token)
+    return templates.TemplateResponse('addEv.html',{'request':request,'name':'asad'})
+    
+
+
+@app.get("/edit-ev/{id}",response_class=HTMLResponse)
+async def root(request:Request):
+    # id_token=request.cookies.get("token")
+    # error_message="no error"
+    # user_token=validateFirebaseToken(id_token)
+    # user=None
+    # if not user_token:
+    #     return templates.TemplateResponse('home.html',{'request':request,'name':'','user_token':None,'error_info':"User not found"})
+    # user=getUser(user_token)
+    return templates.TemplateResponse('editEv.html',{'request':request,'name':'asad'})
     
 
 @app.post("/add-ev", response_class=RedirectResponse)
@@ -137,4 +150,25 @@ async def login(request:Request):
             print(str(err))
 
     return templates.TemplateResponse('login.html',{'request':request,'name':'asad','user_token':user_token})
+    
+
+@app.get("/ev-info/{id}",response_class=HTMLResponse)
+async def login(request:Request):
+    return templates.TemplateResponse('evInfo.html',{'request':request,'ev':{}})
+    
+@app.get("/search-ev",response_class=HTMLResponse)
+async def login(request:Request):
+    return templates.TemplateResponse('searchEv.html',{'request':request,'ev':{}})
+
+@app.get("/compare-ev-form",response_class=HTMLResponse)
+async def login(request:Request):
+    return templates.TemplateResponse('compareEvForm.html',{'request':request,'evs':{}})
+    
+@app.get("/compare-ev",response_class=HTMLResponse)
+async def login(request:Request):
+    return templates.TemplateResponse('compareEv.html',{'request':request,'ev1':{},'ev2':{}})
+    
+@app.post("/search-ev",response_class=HTMLResponse)
+async def login(request:Request):
+    return templates.TemplateResponse('searchEv.html',{'request':request,'ev':{}})
     

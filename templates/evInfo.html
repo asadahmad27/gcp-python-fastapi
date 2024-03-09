@@ -19,11 +19,23 @@
         h1,
         p {
             margin: 10px 0;
+
         }
 
-        .delete {
-            color: #dc3545;
-            cursor: pointer
+        .info-p {
+            font-size: 25px
+        }
+
+        .delete-button {
+            background-color: #dc3545;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            width: 200px
+        }
+
+        input {
+            padding: 8px
         }
     </style>
 </head>
@@ -31,15 +43,40 @@
 <body>
     <div class="container">
         <h1>EV Information</h1>
-        <h3><strong>Name:</strong> {{ ev.name }}</h3>
-        <h3><strong>Manufacturer:</strong> {{ ev.manufacturer }}</h3>
-        <h3><strong>Year:</strong> {{ ev.year }}</h3>
-        <h3><strong>Battery Size:</strong> {{ ev.battery_size }} kWh</h3>
-        <h3><strong>WLTP Range:</strong> {{ ev.wltp_range }} km</h3>
-        <h3><strong>Cost:</strong> {{ ev.cost }}</h3>
-        <h3><strong>Power:</strong> {{ ev.power }} kW</h3>
+        <p class="info-p"><strong>Name:</strong> {{ ev.name }}</p>
+        <p class="info-p"><strong>Manufacturer:</strong> {{ ev.manufacturer }}</p>
+        <p class="info-p"><strong>Year:</strong> {{ ev.year }}</p>
+        <p class="info-p"><strong>Battery Size:</strong> {{ ev.battery_size }} kWh</p>
+        <p class="info-p"><strong>WLTP Range:</strong> {{ ev.wltp_range }} km</p>
+        <p class="info-p"><strong>Cost:</strong> {{ ev.cost }}</p>
+        <p class="info-p"><strong>Power:</strong> {{ ev.power }} kW</p>
+
+
+        <button class="delete-button">Delete</button>
+        <h3>Average Rating: </h3>
+        <p>{{ average_rating}}</p>
+        <div>
+            <h2><u>Reviews</u></h2>
+            {% for review in reviews %}
+            <div class="review">
+                <p><strong>Rating:</strong> {{ review.rating }}/10</p>
+                <p>{{ review.text }}</p>
+                <p>{{ review.submission_date }}</p>
+                <hr />
+            </div>
+            {% endfor %}
+        </div>
+        <h2>Submit Review</h2>
+        <form action="/submit-review" method="post">
+            <label>Review (up to 1,000 characters):</label>
+            <textarea id="review" name="review" maxlength="1000" required rows="20" cols="50"></textarea>
+
+            <label>Rating (0 to 10):</label>
+            <input type="number" id="rating" name="rating" min="0" max="10" required>
+
+            <input type="submit" value="Submit Review">
+        </form>
     </div>
-    <button class="delete-button">Delete</button>
 </body>
 
 </html>

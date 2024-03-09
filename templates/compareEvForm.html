@@ -54,7 +54,7 @@
             </select>
 
             <label>Select Second EV:</label>
-            <select name="ev1" id="ev1" required onchange="updateSecondDropdown()">
+            <select name="ev2" id="ev2" required onchange="updateSecondDropdown()">
                 {% for ev in evs %}
                 <option value="{{ ev.id }}">{{ ev.name }}</option>
                 {% endfor %}

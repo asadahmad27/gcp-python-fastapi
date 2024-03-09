@@ -24,31 +24,66 @@
         h2,
         p {
             margin: 10px 0;
+            font-size: 30px
+        }
+
+
+        .highlight-lowest {
+            color: red;
+        }
+
+        .highlight-highest {
+            color: green;
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <div class="ev-info">
+        <div class="ev-info" style="border-right:2px solid #e0e0e0">
             <h2><a href="/ev-info/{{ ev1.id }}">{{ ev1.name }}</a></h2>
-            <p><strong>Manufacturer:</strong> {{ ev1.manufacturer }}</p>
-            <p><strong>Year:</strong> {{ ev1.year }}</p>
-            <p><strong>Battery Size:</strong> {{ ev1.battery_size }} kWh</p>
-            <p><strong>WLTP Range:</strong> {{ ev1.wltp_range }} km</p>
-            <p><strong>Cost:</strong> {{ ev1.cost }}</p>
-            <p><strong>Power:</strong> {{ ev1.power }} kW</p>
+            <p><strong>Manufacturer:</strong> <span
+                    class="{{ 'highlight-highest' if ev1.manufacturer > ev2.manufacturer else 'highlight-lowest' }}">{{
+                    ev1.manufacturer }}</span></p>
+            <p><strong>Year:</strong> <span
+                    class="{{ 'highlight-highest' if ev1.year > ev2.year else 'highlight-lowest' }}">{{ ev1.year
+                    }}</span></p>
+            <p><strong>Battery Size:</strong> <span
+                    class="{{ 'highlight-highest' if ev1.battery_size > ev2.battery_size else 'highlight-lowest' }}">{{
+                    ev1.battery_size }} kWh</span></p>
+            <p><strong>WLTP Range:</strong> <span
+                    class="{{ 'highlight-highest' if ev1.wltp_range > ev2.wltp_range else 'highlight-lowest' }}">{{
+                    ev1.wltp_range }} km</span></p>
+            <p><strong>Cost:</strong> <span
+                    class="{{ 'highlight-highest' if ev1.cost < ev2.cost else 'highlight-lowest' }}">{{ ev1.cost
+                    }}</span></p>
+            <p><strong>Power:</strong> <span
+                    class="{{ 'highlight-highest' if ev1.power > ev2.power else 'highlight-lowest' }}">{{ ev1.power }}
+                    kW</span></p>
         </div>
         <div class="ev-info">
-            <h2>{{ ev2.name }}</h2>
-            <p><strong>Manufacturer:</strong> {{ ev2.manufacturer }}</p>
-            <p><strong>Year:</strong> {{ ev2.year }}</p>
-            <p><strong>Battery Size:</strong> {{ ev2.battery_size }} kWh</p>
-            <p><strong>WLTP Range:</strong> {{ ev2.wltp_range }} km</p>
-            <p><strong>Cost:</strong> {{ ev2.cost }}</p>
-            <p><strong>Power:</strong> {{ ev2.power }} kW</p>
+            <h2><a href="/ev-info/{{ ev2.id }}">{{ ev2.name }}</a></h2>
+            <p><strong>Manufacturer:</strong> <span
+                    class="{{ 'highlight-highest' if ev2.manufacturer > ev1.manufacturer else 'highlight-lowest' }}">{{
+                    ev2.manufacturer }}</span></p>
+            <p><strong>Year:</strong> <span
+                    class="{{ 'highlight-highest' if ev2.year > ev1.year else 'highlight-lowest' }}">{{ ev2.year
+                    }}</span></p>
+            <p><strong>Battery Size:</strong> <span
+                    class="{{ 'highlight-highest' if ev2.battery_size > ev1.battery_size else 'highlight-lowest' }}">{{
+                    ev2.battery_size }} kWh</span></p>
+            <p><strong>WLTP Range:</strong> <span
+                    class="{{ 'highlight-highest' if ev2.wltp_range > ev1.wltp_range else 'highlight-lowest' }}">{{
+                    ev2.wltp_range }} km</span></p>
+            <p><strong>Cost:</strong> <span
+                    class="{{ 'highlight-highest' if ev2.cost < ev1.cost else 'highlight-lowest' }}">{{ ev2.cost
+                    }}</span></p>
+            <p><strong>Power:</strong> <span
+                    class="{{ 'highlight-highest' if ev2.power > ev1.power else 'highlight-lowest' }}">{{ ev2.power }}
+                    kW</span></p>
         </div>
     </div>
+
 </body>
 
 </html>

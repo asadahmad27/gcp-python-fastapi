@@ -8,8 +8,28 @@ from google.cloud import firestore
 import starlette.status as status
 
 app=FastAPI()
+EV1 = {
+    'year': 2000,
+    'cost': 4000.0,
+    'power': 12.0,
+    'manufacturer': 'Suzuki',
+    'battery_size': 65.0,
+    'wltp_range': 400,
+    'name': 'Mehran New',
+    'reviews': [
+        {'rating': 8, 'text': 'Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet','submission_date': '2021-01-02'},
+         {'rating': 5, 'text': 'Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet','submission_date': '2021-01-05'},
+         {'rating': 3, 'text': 'Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet','submission_date': '2021-01-09'},
+    ]
+}
+
+
+
+EV2={'year': 2007, 'cost': 1000, 'power': 400, 'manufacturer': 'Suzuki', 'battery_size': 65, 'wltp_range': 100, 'name': 'Mehran'}
 firebase_request_adapter=requests.Request()
 firestore_db=firestore.Client()
+
+print(type(EV1),type(EV2))
 app.mount('/static',StaticFiles(directory='static'),name='static')
 templates=Jinja2Templates(directory="templates")
 
@@ -152,10 +172,27 @@ async def login(request:Request):
     return templates.TemplateResponse('login.html',{'request':request,'name':'asad','user_token':user_token})
     
 
-@app.get("/ev-info/{id}",response_class=HTMLResponse)
-async def login(request:Request):
-    return templates.TemplateResponse('evInfo.html',{'request':request,'ev':{}})
-    
+@app.get("/ev-info/{id}", response_class=HTMLResponse)
+async def ev_info(request: Request, id: str):
+    if 'reviews' in EV1:
+        reviews = EV1['reviews']
+        for i in range(len(reviews)):
+            for j in range(i + 1, len(reviews)):
+                if reviews[i]['submission_date'] < reviews[j]['submission_date']:
+                    # Swap the reviews
+                    reviews[i], reviews[j] = reviews[j], reviews[i]
+    else:
+        reviews = []
+
+    # Calculate the average rating
+    if reviews:
+        average_rating = sum(review['rating'] for review in reviews) / len(reviews)
+    else:
+        average_rating = "No reviews yet"
+
+    return templates.TemplateResponse('evInfo.html', {'request': request, 'ev': EV1, 'reviews': reviews, 'average_rating': average_rating})
+
+
 @app.get("/search-ev",response_class=HTMLResponse)
 async def login(request:Request):
     return templates.TemplateResponse('searchEv.html',{'request':request,'ev':{}})
@@ -166,9 +203,21 @@ async def login(request:Request):
     
 @app.get("/compare-ev",response_class=HTMLResponse)
 async def login(request:Request):
-    return templates.TemplateResponse('compareEv.html',{'request':request,'ev1':{},'ev2':{}})
+    # form=await request.form()
+    # ev1_id = form['ev1']
+    # ev2_id = form['ev2']
+ 
+    return templates.TemplateResponse('compareEv.html',{'request':request,'ev1':EV1,'ev2':EV2})
     
 @app.post("/search-ev",response_class=HTMLResponse)
 async def login(request:Request):
     return templates.TemplateResponse('searchEv.html',{'request':request,'ev':{}})
+    
+    
+@app.get("/submit-review",response_class=HTMLResponse)
+async def login(request:Request):
+      # form=await request.form()
+    # review = form['review']
+    # rating = form['rating']
+    return templates.TemplateResponse('',{'request':request,'ev':{}})
     

@@ -9,7 +9,7 @@
     <script src="{{url_for('static',path='/firebase-login.js')}}" type="module"></script>
     <style>
         .main {
-            max-width: 500px;
+            max-width: 80%;
             margin: 0 auto;
         }
 
@@ -30,26 +30,53 @@
             color: white;
             cursor: pointer;
         }
+
+        .table-container {
+
+            background-color: white;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
     </style>
 </head>
 
 <body>
     <div class="main">
         <h2>Search for EVs</h2>
-        <form action="/search-evs" method="get">
+        <form action="/search-ev" method="post">
             <select id="attribute" name="attribute" onchange="updateForm()">
                 <option value="name">Name</option>
                 <option value="year">Year</option>
                 <option value="battery_size">Battery Size</option>
+                <option value="manufacturer">Manufacturer</option>
+                <option value="cost">Cost</option>
+                <option value="power">Power</option>
                 <!-- Add other attributes as options -->
             </select>
             <input type="text" id="value" name="value" placeholder="Enter value">
             <div id="rangeInputs" style="display: none;">
-                <input type="number" id="min" name="min" placeholder="Min value">
-                <input type="number" id="max" name="max" placeholder="Max value">
+                <input type="number" id="min_value" name="min_value" placeholder="Min value">
+                <input type="number" id="max_value" name="max_value" placeholder="Max value">
             </div>
             <input type="submit" value="Search">
         </form>
+        {%if error_msg %}
+        <p>{{error_msg}}</p>
+        {% endif %}
         {%if evs %}
         <div class="table-container">
             <table>
@@ -95,7 +122,7 @@
             var attribute = document.getElementById("attribute").value;
             var valueInput = document.getElementById("value");
             var rangeInputs = document.getElementById("rangeInputs");
-            if (attribute === "name") {
+            if (attribute === "name" || attribute === "manufacturer") {
                 valueInput.style.display = "inline";
                 rangeInputs.style.display = "none";
             } else {

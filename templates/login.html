@@ -54,21 +54,26 @@
 
 <body>
     <div class="auth_container">
-        <div>
-            <Label>Email</Label>
+        <div id="login-box">
+            <div>
+                <Label>Email</Label>
 
-            <input name="email" type="email" id="email" />
-        </div>
-        <div>
-            <Label>Password</Label>
-            <input name="password" type="password" id="password" />
+                <input name="email" type="email" id="email" />
+            </div>
+            <div>
+                <Label>Password</Label>
+                <input name="password" type="password" id="password" />
+            </div>
+            <div>
+                <button id="login" style="margin-bottom: 20px;" class="login-button">Login</button>
+                <button id="signup" class="signup-button">Signup</button>
+            </div>
+            <div id="error-box" style="color:red"></div>
         </div>
 
 
-        <div>
-            <button id="login" style="margin-bottom: 20px;" class="login-button">Login</button>
-            <button id="signup" class="signup-button">Signup</button>
-        </div>
+
+
         <hr />
         <button id="signout">Signout</button>
 

@@ -52,7 +52,7 @@
         <p class="info-p"><strong>Power:</strong> {{ ev.power }} kW</p>
 
 
-        <button class="delete-button">Delete</button>
+        <a class="delete-button" href="/delete-ev/{{ev.name}}">Delete</a>
         <h3>Average Rating: </h3>
         <p>{{ average_rating}}</p>
         <div>
@@ -60,14 +60,14 @@
             {% for review in reviews %}
             <div class="review">
                 <p><strong>Rating:</strong> {{ review.rating }}/10</p>
-                <p>{{ review.text }}</p>
-                <p>{{ review.submission_date }}</p>
+                <p>{{ review.review }}</p>
+                <p>{{ review.submitted_at }}</p>
                 <hr />
             </div>
             {% endfor %}
         </div>
         <h2>Submit Review</h2>
-        <form action="/submit-review" method="post">
+        <form action="/submit-review/{{ev.name}}" method="post">
             <label>Review (up to 1,000 characters):</label>
             <textarea id="review" name="review" maxlength="1000" required rows="20" cols="50"></textarea>
 

@@ -50,6 +50,43 @@
             </div>
             <input type="submit" value="Search">
         </form>
+        {%if evs %}
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Manufacturer</th>
+                        <th>Year</th>
+                        <th>Battery Size</th>
+                        <th>WLTP Range</th>
+                        <th>Cost</th>
+                        <th>Power</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for doc in evs %}
+                    <tr>
+                        <td>{{ doc.id }}</td>
+                        <td><a href="ev-info/{{2}}">{{ doc.get('name') }}</a></td>
+                        <td>{{ doc.get('manufacturer') }}</td>
+                        <td>{{ doc.get('year') }}</td>
+                        <td>{{ doc.get('battery_size') }}</td>
+                        <td>{{ doc.get('wltp_range') }}</td>
+                        <td>{{ doc.get('cost') }}</td>
+                        <td>{{ doc.get('power') }}</td>
+                        <td>
+                            <button onclick="location.href='/view/{{ doc.id }}'">View</button>
+                            <button onclick="location.href='/edit-ev/{{ 2 }}'">Edit</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
     </div>
 
 

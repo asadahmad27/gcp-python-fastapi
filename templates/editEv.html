@@ -44,30 +44,31 @@
 <body>
     <div class="form-container">
         <h2>Edit EV</h2>
-        <form action="/add-ev" method="post">
+        <form action="/update-ev/{{ ev.id }}" method="post">
             <label>Name:</label>
-            <input type="text" id="name" name="name" required>
+            <input type="text" id="name" name="name" value="{{ ev.name }}" required>
 
             <label>Manufacturer:</label>
-            <input type="text" id="manufacturer" name="manufacturer" required>
+            <input type="text" id="manufacturer" name="manufacturer" value="{{ ev.manufacturer }}" required>
 
             <label>Year:</label>
-            <input type="number" id="year" name="year" required>
+            <input type="number" id="year" name="year" value="{{ ev.year }}" required>
 
             <label>Battery Size (KWh):</label>
-            <input type="number" id="battery_size" name="battery_size" required>
+            <input type="number" id="battery_size" name="battery_size" value="{{ ev.battery_size }}" required>
 
             <label>WLTP Range (Km):</label>
-            <input type="number" id="wltp_range" name="wltp_range" required>
+            <input type="number" id="wltp_range" name="wltp_range" value="{{ ev.wltp_range }}" required>
 
             <label>Cost:</label>
-            <input type="number" id="cost" name="cost" required>
+            <input type="number" id="cost" name="cost" value="{{ ev.cost }}" required>
 
             <label>Power (Kw):</label>
-            <input type="number" id="power" name="power" required>
+            <input type="number" id="power" name="power" value="{{ ev.power }}" required>
 
             <input type="submit" value="Update">
         </form>
+
     </div>
 
 </body>

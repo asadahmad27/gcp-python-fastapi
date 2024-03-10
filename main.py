@@ -108,7 +108,7 @@ async def root(request:Request):
     # if not user_token:
     #     return templates.TemplateResponse('home.html',{'request':request,'name':'','user_token':None,'error_info':"User not found"})
     # user=getUser(user_token)
-    return templates.TemplateResponse('editEv.html',{'request':request,'name':'asad'})
+    return templates.TemplateResponse('editEv.html',{'request':request,'name':'asad','ev':EV1})
     
 
 @app.post("/add-ev", response_class=RedirectResponse)
